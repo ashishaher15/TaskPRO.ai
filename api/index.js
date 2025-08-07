@@ -10,11 +10,13 @@ import Taskrouter from './routes/Task.route.js';
 dotenv.config();
 
 
-const PORT =  process.env.PORT || 3000;
+const PORT = 5000;
+process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 app.use(cors({ origin: 'http://localhost:5173' }));
 
 
@@ -40,14 +42,17 @@ mongoose.connect(process.env.MONGODB_URI)
   });
 
 
+console.log("About to start server on port:", PORT);
+
 
 app.get("/", (req, res) => {
   res.send("Server is up and running 🚀");
 });
 
 
-
-
 app.listen(PORT, () => {
   console.log(`✅ Server is running at: http://localhost:${PORT}`);
 });
+
+export default app;
+
